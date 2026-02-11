@@ -4,8 +4,21 @@ import { motion, useMotionValue, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-export default function FuturisticPortfolioSlider({ data }) {
-  const containerRef = useRef(null);
+// Define el tipo para los elementos del portafolio
+interface PortfolioItem {
+  id: string | number;
+  title: string;
+  image: string;
+  urlGithub: string;
+}
+
+// Define las props del componente
+interface FuturisticPortfolioSliderProps {
+  data: PortfolioItem[];
+}
+
+export default function FuturisticPortfolioSlider({ data }: FuturisticPortfolioSliderProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const CARD_WIDTH = 280;
   const GAP = 32;
@@ -20,7 +33,7 @@ export default function FuturisticPortfolioSlider({ data }) {
   const [dragging, setDragging] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-   const startAutoScroll = async () => {
+  const startAutoScroll = async () => {
     const current = x.get();
 
     const remaining = Math.abs(-travel - current);
