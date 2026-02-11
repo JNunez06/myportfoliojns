@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { loadSlim } from "@tsparticles/slim";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 export const CoverParticles = () => {
   const [init, setInit] = useState(false);
@@ -33,7 +34,7 @@ export const CoverParticles = () => {
   }, []);
 
   // Config dinámica según tema
-  const options = useMemo(() => {
+  const options: ISourceOptions = useMemo(() => {
     const particleColor = isDark ? "#ffffff" : "#0f172a";
     const linkColor = isDark ? "#ffffff" : "#0f172a";
 
@@ -43,11 +44,10 @@ export const CoverParticles = () => {
 
       interactivity: {
         events: {
-          onClick: { enable: true, mode: "push" },
-          onHover: { enable: true, mode: "repulse" },
-          // CORRECCIÓN: Cambiar de boolean a objeto
+          onClick: { enable: true, mode: "push" as const },
+          onHover: { enable: true, mode: "repulse" as const },
           resize: {
-            enable: true,  // Esto habilita el redimensionamiento
+            enable: true,
           },
         },
         modes: {
@@ -76,10 +76,12 @@ export const CoverParticles = () => {
         move: {
           enable: true,
           speed: 0.9,
-          direction: "none",
+          direction: "none" as const, // Usar "none" como valor literal
           random: false,
           straight: false,
-          outModes: { default: "bounce" },
+          outModes: {
+            default: "bounce" as const,
+          },
         },
 
         number: {
@@ -92,7 +94,7 @@ export const CoverParticles = () => {
         },
 
         shape: {
-          type: "circle",
+          type: "circle" as const,
         },
 
         size: {
