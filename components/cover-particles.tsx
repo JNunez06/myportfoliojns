@@ -45,7 +45,10 @@ export const CoverParticles = () => {
         events: {
           onClick: { enable: true, mode: "push" },
           onHover: { enable: true, mode: "repulse" },
-          resize: true,
+          // CORRECCIÓN: Cambiar de boolean a objeto
+          resize: {
+            enable: true,  // Esto habilita el redimensionamiento
+          },
         },
         modes: {
           push: {
