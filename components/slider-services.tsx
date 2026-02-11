@@ -1,13 +1,15 @@
 "use client"
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
+
 
 import { serviceData } from '@/data';
 
 const SliderServices = () => {
     return (
         <Swiper
+        
             breakpoints={{
                 320: {
                     slidesPerView: 1,
@@ -22,11 +24,18 @@ const SliderServices = () => {
                     spaceBetween: 15
                 }
             }}
-            freeMode={true}
+            autoplay={{
+                delay: 1000,  
+                disableOnInteraction: false,  
+                pauseOnMouseEnter: true, 
+            }}
+            speed={800}  
+            loop={true} 
+            freeMode={false}
             pagination={{
                 clickable: true
             }}
-            modules={[Pagination]}
+            modules={[Pagination, Autoplay]}
             className="h-[280px] md:h-[340px] w-[270px] md:w-[550px]"
         >
 

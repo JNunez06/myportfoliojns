@@ -6,14 +6,15 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { Providers } from "./providers";
 import Navbar from "@/components/navbar";
 import Header from "@/components/header";
 
 const urbanist = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TarreDev Landing Page",
-  description: "Landing page made by TarreDev",
+  title: "Portafolio - JDEV",
+  description: "Landing page made by JECNER",
 };
 
 export default function RootLayout({
@@ -24,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={urbanist.className}>
-        <Navbar />
-        <Header />
-        {children}
+        <Providers>
+          <Navbar />
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
